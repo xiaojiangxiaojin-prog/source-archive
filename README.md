@@ -5,7 +5,7 @@ This repository is organized by project type.
 ## Categories
 
 - `desktop-pets/` - Desktop pet assets, manifests, QA previews, and generation tools.
-- `website-source/` - Website source projects.
+- `website-source/` - Website source projects, including `game-site` and `photo-portfolio`.
 - `game-source/` - Game source projects.
 
 ## Notes

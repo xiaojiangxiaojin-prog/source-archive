@@ -1,0 +1,12 @@
+services:
+  app:
+    build: .
+    container_name: photo-portfolio-app
+    restart: unless-stopped
+    env_file:
+      - .env.production
+    ports:
+      - "127.0.0.1:3000:3000"
+    volumes:
+      - ./data:/app/data
+      - ./public/uploads:/app/public/uploads

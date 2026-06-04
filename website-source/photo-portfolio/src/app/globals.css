@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+:root {
+  --background: #11100e;
+  --foreground: #f7f2e8;
+  --panel: rgba(255, 255, 255, 0.055);
+  --line: rgba(247, 242, 232, 0.12);
+  --muted: #a9a093;
+  --accent: #d7b56d;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background:
+    radial-gradient(circle at 14% 5%, rgba(215, 181, 109, 0.18), transparent 30rem),
+    radial-gradient(circle at 86% 8%, rgba(125, 111, 88, 0.18), transparent 30rem),
+    radial-gradient(circle at 52% 45%, rgba(255, 248, 236, 0.055), transparent 34rem),
+    linear-gradient(180deg, #1c1914 0%, #15130f 42%, #100f0d 100%);
+  color: var(--foreground);
+}
+
+::selection {
+  background: var(--accent);
+  color: #11100e;
+}
+
+.site-shell {
+  background:
+    radial-gradient(circle at 18% 18%, rgba(215, 181, 109, 0.12), transparent 24rem),
+    radial-gradient(circle at 74% 28%, rgba(255, 248, 236, 0.045), transparent 28rem),
+    linear-gradient(90deg, rgba(247, 242, 232, 0.028) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(247, 242, 232, 0.02) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(28, 25, 20, 0.72), rgba(13, 12, 11, 0.88));
+  background-size: 100% 100%, 100% 100%, 96px 96px, 96px 96px, 100% 100%;
+}
+
+.fine-border {
+  border-color: var(--line);
+}
+
+.text-balance {
+  text-wrap: balance;
+}

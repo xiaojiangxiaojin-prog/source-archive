@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>逃出求真楼</title>
+    <link rel="stylesheet" href="./styles.css?v=20260603-03" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="game-stage" aria-label="逃出求真楼">
+        <canvas id="game"></canvas>
+        <div class="hud">
+          <div><span class="eyebrow">分数</span><strong id="score">100</strong></div>
+          <div><span class="eyebrow">通行卡</span><strong id="items">0/3</strong></div>
+          <div><span class="eyebrow">健康</span><strong id="health">100</strong></div>
+          <div><span class="eyebrow">体力</span><strong id="stamina">100</strong></div>
+          <div><span class="eyebrow">状态</span><strong id="status">逃脱中</strong></div>
+        </div>
+        <div class="top-actions">
+          <div class="zoom-controls" aria-label="调整地图视野">
+            <span>视野</span>
+            <button class="zoom-button" id="zoomOutButton" type="button" aria-label="缩小地图，看到更多画面">−</button>
+            <button class="zoom-button" id="zoomInButton" type="button" aria-label="放大地图，看清细节">＋</button>
+          </div>
+          <button class="cloak-toggle" id="cloakButton" type="button" aria-label="使用隐身实验服" disabled>实验服 未获得</button>
+          <button class="exam-toggle" id="examButton" type="button" aria-label="使用断层试卷" disabled>试卷 未获得</button>
+          <button class="drink-toggle" id="drinkButton" type="button" aria-label="使用东鹏特饮" disabled>东鹏 未获得</button>
+          <button class="codex-toggle" id="codexButton" type="button" aria-label="打开图鉴">图鉴</button>
+          <button class="leaderboard-toggle" id="leaderboardButton" type="button" aria-label="打开排行榜">排行榜</button>
+          <button class="bgm-toggle" id="bgmToggle" type="button" aria-label="开关背景音乐">BGM 开</button>
+        </div>
+        <div class="message" id="message"></div>
+        <div class="help-strip">玩法：左侧摇杆移动；冲刺消耗体力；按住右侧玩手机按钮会恢复健康值，但速度减半；躲开老师，完成目标后从逃生门离开。</div>
+        <div class="account-gate" id="accountGate">
+          <div class="account-card">
+            <p class="kicker">PLAYER LOGIN</p>
+            <h1>逃出求真楼</h1>
+            <p>输入 1-10 位数字或字母作为游戏账号。账号会用来保存通关进度，下次输入同一个账号就能继续玩。</p>
+            <form id="accountForm" class="account-form" autocomplete="off">
+              <input id="accountInput" name="account" inputmode="text" maxlength="10" pattern="[A-Za-z0-9]{1,10}" placeholder="1-10位数字或者是字母" aria-label="游戏账号" />
+              <button type="submit">进入游戏</button>
+            </form>
+            <p class="account-error" id="accountError" aria-live="polite"></p>
+            <button class="leaderboard-entry" id="leaderboardHomeButton" type="button">查看排行榜</button>
+          </div>
+        </div>
+        <div class="nickname-gate" id="nicknameGate" hidden>
+          <div class="account-card">
+            <p class="kicker">PLAYER NAME</p>
+            <h1>取个昵称</h1>
+            <p>昵称会显示在排行榜上，账号只用来登录和保存进度。老用户设置昵称后，原来的通关进度会继续保留。</p>
+            <form id="nicknameForm" class="account-form nickname-form" autocomplete="off">
+              <input id="nicknameInput" name="nickname" inputmode="text" maxlength="12" placeholder="昵称，支持中文" aria-label="游戏昵称" />
+              <button type="submit">保存昵称</button>
+            </form>
+            <p class="account-error" id="nicknameError" aria-live="polite"></p>
+          </div>
+        </div>
+        <div class="start" id="start" hidden>
+          <p class="kicker">QIU ZHEN ESCAPE</p>
+          <h1>逃出求真楼</h1>
+          <p id="startText">左侧摇杆移动，右侧按住玩手机按钮可以恢复健康值，但移动速度会减半。躲开爱找茬的老师，完成目标后从右侧逃生门离开。</p>
+          <div class="level-select" aria-label="选择关卡">
+            <button class="level-button active" data-level="0">第 1 关</button>
+            <button class="level-button" data-level="1">第 2 关</button>
+            <button class="level-button" data-level="2">第 3 关</button>
+            <button class="level-button" data-level="3">第 4 关</button>
+            <button class="level-button" data-level="4">第 5 关</button>
+            <button class="level-button" data-level="5">第 6 关</button>
+            <button class="level-button" data-level="6">第 7 关</button>
+            <button class="level-button" data-level="7">第 8 关</button>
+            <button class="level-button" data-level="8">第 9 关</button>
+            <button class="level-button" data-level="9">第 10 关</button>
+            <button class="level-button" data-level="10">第 11 关</button>
+            <button class="level-button" data-level="11">第 12 关</button>
+            <button class="level-button" data-level="12">第 13 关</button>
+            <button class="level-button" data-level="13">第 14 关</button>
+            <button class="level-button" data-level="14">第 15 关</button>
+            <button class="level-button" data-level="15">第 16 关</button>
+            <button class="level-button" data-level="16">第 17 关</button>
+            <button class="level-button" data-level="17">第 18 关</button>
+            <button class="level-button" data-level="18">第 19 关</button>
+            <button class="level-button" data-level="19">第 20 关</button>
+            <button class="level-button" data-level="20">第 21 关</button>
+            <button class="level-button" data-level="21">第 22 关</button>
+            <button class="level-button" data-level="22">第 23 关</button>
+            <button class="level-button" data-level="23">第 24 关</button>
+            <button class="level-button" data-level="24">第 25 关</button>
+            <button class="level-button" data-level="25">第 26 关</button>
+            <button class="level-button" data-level="26">第 27 关</button>
+            <button class="level-button" data-level="27">第 28 关</button>
+            <button class="level-button" data-level="28">第 29 关</button>
+            <button class="level-button" data-level="29">第 30 关</button>
+          </div>
+          <div class="start-actions">
+            <button id="startBtn">开始游戏</button>
+            <button class="leaderboard-entry" id="leaderboardStartButton" type="button">排行榜</button>
+          </div>
+        </div>
+        <div class="mobile-controls" aria-hidden="true">
+          <div class="joystick" id="joystick"><div class="stick" id="stick"></div></div>
+          <div class="action-buttons">
+            <button class="sprint-button" id="sprintButton" aria-label="冲刺"><span aria-hidden="true">冲刺</span></button>
+            <button class="phone-button" id="phoneButton" aria-label="玩手机"><span class="phone-icon" aria-hidden="true"></span></button>
+          </div>
+        </div>
+      </section>
+      <div class="codex-panel" id="codexPanel" hidden>
+        <div class="codex-card" role="dialog" aria-modal="true" aria-label="道具图鉴">
+          <button class="codex-close" id="codexClose" type="button" aria-label="关闭图鉴">×</button>
+          <p class="kicker">ITEM CODEX</p>
+          <div class="codex-grid">
+            <article class="codex-item">
+              <div class="codex-item-icon" aria-hidden="true">隐</div>
+              <h2>隐身实验服</h2>
+              <p>主动使用后 10 秒内老师看不到你，站在老师圆圈里也不会扣分。</p>
+              <p>限制：隐身期间只要玩手机，实验服会立刻失效。</p>
+            </article>
+            <article class="codex-item">
+              <div class="codex-item-icon exam" aria-hidden="true">38</div>
+              <h2>断层试卷</h2>
+              <p>召唤 38 分 NPC，老师会立刻放弃追你，跑去骂他 5 秒。</p>
+              <p>老师会说：“你都断层了”“捞都捞不起来”。</p>
+            </article>
+            <article class="codex-item">
+              <div class="codex-item-icon drink" aria-hidden="true"><img src="./assets/dongpeng.png" alt="" /></div>
+              <h2>东鹏特饮</h2>
+              <p>第 21 关以后出现。喝下后 5 秒内移速翻倍并进入无敌状态。</p>
+              <p>无敌期间撞到老师，会把老师击飞并眩晕 3 秒。</p>
+            </article>
+          </div>
+        </div>
+      </div>
+      <div class="leaderboard-panel" id="leaderboardPanel" hidden>
+        <div class="leaderboard-card" role="dialog" aria-modal="true" aria-label="排行榜">
+          <button class="leaderboard-close" id="leaderboardClose" type="button" aria-label="关闭排行榜">×</button>
+          <p class="kicker">RANKING</p>
+          <h2>求真楼排行榜</h2>
+          <p class="leaderboard-note">排行榜只显示昵称。没有设置昵称的账号会保留进度，但不会上榜。</p>
+          <div class="leaderboard-list" id="leaderboardList">读取中...</div>
+        </div>
+      </div>
+    </main>
+    <script src="./game.js?v=20260603-03"></script>
+  </body>
+</html>
