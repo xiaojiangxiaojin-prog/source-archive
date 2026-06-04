@@ -1,0 +1,20 @@
+# Local backups
+*.reg
+
+# Generated archives and bundled tools
+*.zip
+/tools/
+
+# Presentation-specific build inputs kept outside this source archive
+/assets/
+/build_graphene_battery_ppt.py
+
+# Presentation exports kept outside the source archive
+*.ppt
+*.pptx
+
+# Common generated files
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db

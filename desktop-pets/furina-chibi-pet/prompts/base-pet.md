@@ -1,0 +1,7 @@
+Create one clean full-body reference sprite for Codex pet Furina Chibi.
+
+Pet identity: Chibi Furina-inspired desktop pet, matching the provided Navia desktop pet style: tiny full-body pixel/chibi proportions, white hair with pale blue tips, blue top hat with gold trim, navy theatrical coat, white shorts, blue bow, water-drop jewel, elegant Fontaine stage personality. Include three tiny sea companions as simplified cute sidekicks: a blue seahorse-like gentleman, a small crab-like mademoiselle, and a round octopus-like usher; keep them small and close to Furina, readable but not cluttered..
+Style: Pet-safe sprite: compact full-body mascot, readable in a 192x208 cell, clear silhouette, simple face, stable palette/materials, and crisp edges for chroma-key extraction. Style `pixel`: Pixel-art-adjacent digital mascot with a chunky silhouette, simple dark outline, limited palette, flat cel shading, and visible stepped edges. User style notes: Small chibi pixel-art desktop pet style like the provided Navia example, crisp readable silhouette, dark transparent-ready background workflow, no text, no watermark, no readable logos..
+
+
+Place a single centered pose on a perfectly flat pure magenta #FF00FF chroma-key background. Keep the full pet visible, compact, readable at 192x208, and easy to animate. Preserve approved reference identity cues. No scenery, text, borders, checkerboard transparency, shadows, glows, detached effects, or extra props. Keep #FF00FF and close colors out of the pet, props, highlights, and effects.
